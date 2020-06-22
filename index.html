@@ -8,10 +8,12 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
     <link rel="stylesheet" href="css/qgis2web.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/MarkerCluster.css">
     <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
     <link rel="stylesheet" href="css/leaflet-measure.css">
     <style>
         html,
@@ -31,6 +33,7 @@
     </div>
     <script src="js/qgis2web_expressions.js"></script>
     <script src="js/leaflet.js"></script>
+    <script src="js/L.Control.Locate.min.js"></script>
     <script src="js/leaflet.rotatedMarker.js"></script>
     <script src="js/leaflet.pattern.js"></script>
     <script src="js/leaflet-hash.js"></script>
@@ -38,6 +41,7 @@
     <script src="js/rbush.min.js"></script>
     <script src="js/labelgun.min.js"></script>
     <script src="js/labels.js"></script>
+    <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
     <script src="js/leaflet-measure.js"></script>
     <script src="js/leaflet.markercluster.js"></script>
     <script src="data/gadm36_NCL_2_2.js"></script>
@@ -55,10 +59,11 @@
     <script>
         var map = L.map('map', {
             zoomControl: true, maxZoom: 28, minZoom: 1
-        }).fitBounds([[42.02502746210987, -3.491707690995233], [48.41185966156489, 12.583015514020587]]);
+        }).fitBounds([[44.563488900036525, -1.297915176758951], [44.99975419585875, -0.31748826020034504]]);
         var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank"></a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org"></a>');
         var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
+        L.control.locate({ locateOptions: { maxZoom: 19 } }).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
@@ -79,7 +84,7 @@
         var layer_GoogleHybrid_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
             pane: 'pane_GoogleHybrid_0',
             opacity: 1.0,
-            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">CARTOGIS</a>',
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html"></a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
@@ -92,7 +97,7 @@
         var layer_OSMHumanitarian_1 = L.tileLayer('http://tile-b.openstreetmap.fr/hot/{z}/{x}/{y}.png, http://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png, http://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             pane: 'pane_OSMHumanitarian_1',
             opacity: 1.0,
-            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            attribution: '<a href="https://www.openstreetmap.org/copyright"></a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
@@ -675,7 +680,7 @@
                 lineJoin: 'miter',
                 weight: 1.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_COMMUNES_MAROCS_BDXIMMO_8');
@@ -683,7 +688,7 @@
         map.getPane('pane_COMMUNES_MAROCS_BDXIMMO_8').style['mix-blend-mode'] = 'normal';
         var layer_COMMUNES_MAROCS_BDXIMMO_8 = new L.geoJson(json_COMMUNES_MAROCS_BDXIMMO_8, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_COMMUNES_MAROCS_BDXIMMO_8',
             layerName: 'layer_COMMUNES_MAROCS_BDXIMMO_8',
             pane: 'pane_COMMUNES_MAROCS_BDXIMMO_8',
@@ -699,7 +704,6 @@
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
-                    </tr>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, { maxHeight: 400 });
@@ -827,6 +831,7 @@
         function pop_BIEN_IMMO_PERI_3857_11(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
+                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -838,7 +843,7 @@
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Liens'] !== null ? autolinker.link(feature.properties['Liens'].toLocaleString()) : '') + '</td>\
-                    <tr>\
+                    </tr>\
                 </table>';
             layer.bindPopup(popupContent, { maxHeight: 400 });
         }
@@ -909,8 +914,6 @@
         function pop_BIEN_IMMO_DEL_3857_12(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -984,7 +987,6 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['Liens'] !== null ? autolinker.link(feature.properties['Liens'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
                 </table>';
             layer.bindPopup(popupContent, { maxHeight: 400 });
         }
@@ -1019,7 +1021,7 @@
                         weight: 2.0,
                         fill: true,
                         fillOpacity: 1,
-                        fillColor: 'rgba(85,255,0,1.0)',
+                        fillColor: 'rgba(0,255,0,1.0)',
                         interactive: true,
                     }
                     break;
@@ -1084,6 +1086,36 @@
         bounds_group.addLayer(layer_BIEN_IMMO_3857_13);
         cluster_BIEN_IMMO_3857_13.addTo(map);
         map.on("zoomend", function (e) {
+            if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+                map.addLayer(layer_LIMITES_PORTUGAL_4);
+            } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+                map.removeLayer(layer_LIMITES_PORTUGAL_4);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+                map.addLayer(layer_FRANCE_LIMITES_PAYS_REG_DEPT_5);
+            } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+                map.removeLayer(layer_FRANCE_LIMITES_PAYS_REG_DEPT_5);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+                map.addLayer(layer_gadm36_MAR_1_6);
+            } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+                map.removeLayer(layer_gadm36_MAR_1_6);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+                map.addLayer(layer_gadm36_MAR_2_7);
+            } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+                map.removeLayer(layer_gadm36_MAR_2_7);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+                map.addLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
+            } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+                map.removeLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+                map.addLayer(layer_COMMUNES_BDX_IMMO_9);
+            } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+                map.removeLayer(layer_COMMUNES_BDX_IMMO_9);
+            }
             if (map.getZoom() <= 19 && map.getZoom() >= 12) {
                 map.addLayer(layer_LIGNES_TRAM_BATCUB_10);
             } else if (map.getZoom() > 19 || map.getZoom() < 12) {
@@ -1099,12 +1131,42 @@
             } else if (map.getZoom() > 19 || map.getZoom() < 13) {
                 map.removeLayer(cluster_BIEN_IMMO_DEL_3857_12);
             }
-            if (map.getZoom() <= 13 && map.getZoom() >= 5) {
+            if (map.getZoom() <= 13 && map.getZoom() >= 2) {
                 map.addLayer(cluster_BIEN_IMMO_3857_13);
-            } else if (map.getZoom() > 13 || map.getZoom() < 5) {
+            } else if (map.getZoom() > 13 || map.getZoom() < 2) {
                 map.removeLayer(cluster_BIEN_IMMO_3857_13);
             }
         });
+        if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+            map.addLayer(layer_LIMITES_PORTUGAL_4);
+        } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+            map.removeLayer(layer_LIMITES_PORTUGAL_4);
+        }
+        if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+            map.addLayer(layer_FRANCE_LIMITES_PAYS_REG_DEPT_5);
+        } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+            map.removeLayer(layer_FRANCE_LIMITES_PAYS_REG_DEPT_5);
+        }
+        if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+            map.addLayer(layer_gadm36_MAR_1_6);
+        } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+            map.removeLayer(layer_gadm36_MAR_1_6);
+        }
+        if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+            map.addLayer(layer_gadm36_MAR_2_7);
+        } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+            map.removeLayer(layer_gadm36_MAR_2_7);
+        }
+        if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+            map.addLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
+        } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+            map.removeLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
+        }
+        if (map.getZoom() <= 19 && map.getZoom() >= 6) {
+            map.addLayer(layer_COMMUNES_BDX_IMMO_9);
+        } else if (map.getZoom() > 19 || map.getZoom() < 6) {
+            map.removeLayer(layer_COMMUNES_BDX_IMMO_9);
+        }
         if (map.getZoom() <= 19 && map.getZoom() >= 12) {
             map.addLayer(layer_LIGNES_TRAM_BATCUB_10);
         } else if (map.getZoom() > 19 || map.getZoom() < 12) {
@@ -1120,9 +1182,9 @@
         } else if (map.getZoom() > 19 || map.getZoom() < 13) {
             map.removeLayer(cluster_BIEN_IMMO_DEL_3857_12);
         }
-        if (map.getZoom() <= 13 && map.getZoom() >= 5) {
+        if (map.getZoom() <= 13 && map.getZoom() >= 2) {
             map.addLayer(cluster_BIEN_IMMO_3857_13);
-        } else if (map.getZoom() > 13 || map.getZoom() < 5) {
+        } else if (map.getZoom() > 13 || map.getZoom() < 2) {
             map.removeLayer(cluster_BIEN_IMMO_3857_13);
         }
         var title = new L.Control();
@@ -1135,6 +1197,16 @@
             this._div.innerHTML = '<h2>Bordeaux Immobilier Conseils</h2>';
         };
         title.addTo(map);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+            .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+            .title += 'Search for a place';
         map.on("zoomend", function () {
 
             if (map.hasLayer(layer_COMMUNES_BDX_IMMO_9)) {
