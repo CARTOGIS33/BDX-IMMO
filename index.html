@@ -59,7 +59,7 @@
     <script>
         var map = L.map('map', {
             zoomControl: true, maxZoom: 28, minZoom: 1
-        }).fitBounds([[44.563488900036525, -1.297915176758951], [44.99975419585875, -0.31748826020034504]]);
+        }).fitBounds([[43.87901630505722, -2.1854689254033817], [45.62478775612699, 1.7362387408306132]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank"></a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org"></a>');
         var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
@@ -452,19 +452,6 @@
                         interactive: false,
                     }
                     break;
-                default:
-                    return {
-                        pane: 'pane_FRANCE_LIMITES_PAYS_REG_DEPT_5',
-                        opacity: 1,
-                        color: 'rgba(91,240,68,1.0)',
-                        dashArray: '',
-                        lineCap: 'square',
-                        lineJoin: 'bevel',
-                        weight: 1.0,
-                        fillOpacity: 0,
-                        interactive: false,
-                    }
-                    break;
             }
         }
         map.createPane('pane_FRANCE_LIMITES_PAYS_REG_DEPT_5');
@@ -831,7 +818,6 @@
         function pop_BIEN_IMMO_PERI_3857_11(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -974,7 +960,6 @@
         cluster_BIEN_IMMO_DEL_3857_12.addTo(map);
         function pop_BIENS_IMMO_13(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -1208,7 +1193,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
             .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps, { 'BIENS_IMMO<br /><table><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_ALOUER0.png" /></td><td>A_LOUER</td></tr><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_AVENDRE1.png" /></td><td>A_VENDRE</td></tr><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_SOUSCOMPROMIS2.png" /></td><td>SOUS COMPROMIS</td></tr><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_VENDU3.png" /></td><td>VENDU</td></tr></table>': cluster_BIENS_IMMO_13, '<br /><table><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_ALOUER0.png" /></td><td>A_LOUER</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_AVENDRE1.png" /></td><td>A_VENDRE</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_SOUSCOMPROMIS2.png" /></td><td>SOUS COMPROMIS</td></tr></table>': layer_BIEN_IMMO_PERI_3857_11, 'LIGNES_TRAM_BATCUB<br /><table><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_BatCub0.png" /></td><td>BatCub</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramA1.png" /></td><td>Tram A</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramB2.png" /></td><td>Tram B</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramC3.png" /></td><td>Tram C</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramD4.png" /></td><td>Tram D</td></tr></table>': layer_LIGNES_TRAM_BATCUB_10, 'FRANCE_LIMITES_PAYS_REG_DEPT<br /><table><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Frontièreinternationale0.png" /></td><td>Frontière internationale</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitecôtière1.png" /></td><td>Limite côtière</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitededépartement2.png" /></td><td>Limite de département</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitederégion3.png" /></td><td>Limite de région</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_4.png" /></td><td></td></tr></table>': layer_FRANCE_LIMITES_PAYS_REG_DEPT_5, "Fond de plan carte ": layer_Fonddeplancarte_1, "Fond de plan satéllite": layer_Fonddeplansatllite_0, }, { collapsed: false }).addTo(map);
+        L.control.layers(baseMaps, { 'BIENS_IMMO<br /><table><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_ALOUER0.png" /></td><td>A_LOUER</td></tr><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_AVENDRE1.png" /></td><td>A_VENDRE</td></tr><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_SOUSCOMPROMIS2.png" /></td><td>SOUS COMPROMIS</td></tr><tr><td style="text-align: center;"><img src="legend/BIENS_IMMO_13_VENDU3.png" /></td><td>VENDU</td></tr></table>': cluster_BIENS_IMMO_13, '<br /><table><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_ALOUER0.png" /></td><td>A_LOUER</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_AVENDRE1.png" /></td><td>A_VENDRE</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_SOUSCOMPROMIS2.png" /></td><td>SOUS COMPROMIS</td></tr></table>': layer_BIEN_IMMO_PERI_3857_11, 'LIGNES_TRAM_BATCUB<br /><table><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_BatCub0.png" /></td><td>BatCub</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramA1.png" /></td><td>Tram A</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramB2.png" /></td><td>Tram B</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramC3.png" /></td><td>Tram C</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramD4.png" /></td><td>Tram D</td></tr></table>': layer_LIGNES_TRAM_BATCUB_10, '<img src="legend/COMMUNES_BDX_IMMO_9.png" /> COMMUNES': layer_COMMUNES_BDX_IMMO_9, 'FRANCE_LIMITES_PAYS_REG_DEPT<br /><table><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Frontièreinternationale0.png" /></td><td>Frontière internationale</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitecôtière1.png" /></td><td>Limite côtière</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitededépartement2.png" /></td><td>Limite de département</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitederégion3.png" /></td><td>Limite de région</td></tr></table>': layer_FRANCE_LIMITES_PAYS_REG_DEPT_5, "Fond de plan carte ": layer_Fonddeplancarte_1, "Fond de plan satéllite": layer_Fonddeplansatllite_0, }).addTo(map);
         map.on("zoomend", function () {
 
             if (map.hasLayer(layer_COMMUNES_BDX_IMMO_9)) {
