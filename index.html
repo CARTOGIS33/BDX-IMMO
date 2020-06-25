@@ -59,7 +59,7 @@
     <script>
         var map = L.map('map', {
             zoomControl: true, maxZoom: 28, minZoom: 1
-        }).fitBounds([[43.91596721548725, -1.6207430214743566], [45.37352283930685, 1.6473467003876627]]);
+        }).fitBounds([[44.20437220967286, -1.3338568444162782], [45.36760730597491, 0.4249696240767354]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank"></a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org"></a>');
         var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
@@ -176,7 +176,6 @@
             style: style_gadm36_NCL_2_2_0,
         });
         bounds_group.addLayer(layer_gadm36_NCL_2_2);
-        map.addLayer(layer_gadm36_NCL_2_2);
         function pop_gadm36_NCL_1_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -239,7 +238,6 @@
             style: style_gadm36_NCL_1_3_0,
         });
         bounds_group.addLayer(layer_gadm36_NCL_1_3);
-        map.addLayer(layer_gadm36_NCL_1_3);
         function pop_LIMITES_PORTUGAL_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -385,7 +383,6 @@
             style: style_LIMITES_PORTUGAL_4_0,
         });
         bounds_group.addLayer(layer_LIMITES_PORTUGAL_4);
-        map.addLayer(layer_LIMITES_PORTUGAL_4);
         function pop_FRANCE_LIMITES_PAYS_REG_DEPT_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -530,7 +527,6 @@
             style: style_gadm36_MAR_1_6_0,
         });
         bounds_group.addLayer(layer_gadm36_MAR_1_6);
-        map.addLayer(layer_gadm36_MAR_1_6);
         function pop_gadm36_MAR_2_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -602,7 +598,6 @@
             style: style_gadm36_MAR_2_7_0,
         });
         bounds_group.addLayer(layer_gadm36_MAR_2_7);
-        map.addLayer(layer_gadm36_MAR_2_7);
         function pop_COMMUNES_MAROCS_BDXIMMO_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -683,7 +678,6 @@
             style: style_COMMUNES_MAROCS_BDXIMMO_8_0,
         });
         bounds_group.addLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
-        map.addLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
         function pop_COMMUNES_BDX_IMMO_9(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -744,7 +738,7 @@
                         lineJoin: 'round',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: true,
+                        interactive: false,
                     }
                     break;
                 case 'Tram A':
@@ -757,7 +751,7 @@
                         lineJoin: 'bevel',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: true,
+                        interactive: false,
                     }
                     break;
                 case 'Tram B':
@@ -770,7 +764,7 @@
                         lineJoin: 'bevel',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: true,
+                        interactive: false,
                     }
                     break;
                 case 'Tram C':
@@ -783,7 +777,7 @@
                         lineJoin: 'bevel',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: true,
+                        interactive: false,
                     }
                     break;
                 case 'Tram D':
@@ -796,7 +790,7 @@
                         lineJoin: 'bevel',
                         weight: 4.0,
                         fillOpacity: 0,
-                        interactive: true,
+                        interactive: false,
                     }
                     break;
             }
@@ -806,7 +800,7 @@
         map.getPane('pane_LIGNES_TRAM_BATCUB_10').style['mix-blend-mode'] = 'normal';
         var layer_LIGNES_TRAM_BATCUB_10 = new L.geoJson(json_LIGNES_TRAM_BATCUB_10, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_LIGNES_TRAM_BATCUB_10',
             layerName: 'layer_LIGNES_TRAM_BATCUB_10',
             pane: 'pane_LIGNES_TRAM_BATCUB_10',
@@ -817,6 +811,8 @@
         map.addLayer(layer_LIGNES_TRAM_BATCUB_10);
         function pop_BIEN_IMMO_PERI_3857_11(feature, layer) {
             var popupContent = '<table>\
+                    <tr>\
+                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -956,7 +952,6 @@
         cluster_BIEN_IMMO_DEL_3857_12.addLayer(layer_BIEN_IMMO_DEL_3857_12);
 
         bounds_group.addLayer(layer_BIEN_IMMO_DEL_3857_12);
-        cluster_BIEN_IMMO_DEL_3857_12.addTo(map);
         function pop_BIENS_IMMO_13(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -1069,8 +1064,17 @@
         cluster_BIENS_IMMO_13.addLayer(layer_BIENS_IMMO_13);
 
         bounds_group.addLayer(layer_BIENS_IMMO_13);
-        cluster_BIENS_IMMO_13.addTo(map);
         map.on("zoomend", function (e) {
+            if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+                map.addLayer(layer_Fonddeplansatllite_0);
+            } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+                map.removeLayer(layer_Fonddeplansatllite_0);
+            }
+            if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+                map.addLayer(layer_Fonddeplancarte_1);
+            } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+                map.removeLayer(layer_Fonddeplancarte_1);
+            }
             if (map.getZoom() <= 19 && map.getZoom() >= 6) {
                 map.addLayer(layer_gadm36_NCL_2_2);
             } else if (map.getZoom() > 19 || map.getZoom() < 6) {
@@ -1126,12 +1130,22 @@
             } else if (map.getZoom() > 19 || map.getZoom() < 13) {
                 map.removeLayer(cluster_BIEN_IMMO_DEL_3857_12);
             }
-            if (map.getZoom() <= 13 && map.getZoom() >= 2) {
+            if (map.getZoom() <= 12 && map.getZoom() >= 2) {
                 map.addLayer(cluster_BIENS_IMMO_13);
-            } else if (map.getZoom() > 13 || map.getZoom() < 2) {
+            } else if (map.getZoom() > 12 || map.getZoom() < 2) {
                 map.removeLayer(cluster_BIENS_IMMO_13);
             }
         });
+        if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+            map.addLayer(layer_Fonddeplansatllite_0);
+        } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+            map.removeLayer(layer_Fonddeplansatllite_0);
+        }
+        if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+            map.addLayer(layer_Fonddeplancarte_1);
+        } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+            map.removeLayer(layer_Fonddeplancarte_1);
+        }
         if (map.getZoom() <= 19 && map.getZoom() >= 6) {
             map.addLayer(layer_gadm36_NCL_2_2);
         } else if (map.getZoom() > 19 || map.getZoom() < 6) {
@@ -1187,9 +1201,9 @@
         } else if (map.getZoom() > 19 || map.getZoom() < 13) {
             map.removeLayer(cluster_BIEN_IMMO_DEL_3857_12);
         }
-        if (map.getZoom() <= 13 && map.getZoom() >= 2) {
+        if (map.getZoom() <= 12 && map.getZoom() >= 2) {
             map.addLayer(cluster_BIENS_IMMO_13);
-        } else if (map.getZoom() > 13 || map.getZoom() < 2) {
+        } else if (map.getZoom() > 12 || map.getZoom() < 2) {
             map.removeLayer(cluster_BIENS_IMMO_13);
         }
         var title = new L.Control();
@@ -1213,7 +1227,7 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
             .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps, {'<br /><table><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_ALOUER0.png" /></td><td>A_LOUER</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_AVENDRE1.png" /></td><td>A_VENDRE</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_SOUSCOMPROMIS2.png" /></td><td>SOUS COMPROMIS</td></tr></table>': layer_BIEN_IMMO_PERI_3857_11, 'LIGNES_TRAM_BATCUB<br /><table><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_BatCub0.png" /></td><td>BatCub</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramA1.png" /></td><td>Tram A</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramB2.png" /></td><td>Tram B</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramC3.png" /></td><td>Tram C</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramD4.png" /></td><td>Tram D</td></tr></table>': layer_LIGNES_TRAM_BATCUB_10, '<img src="legend/COMMUNES_BDX_IMMO_9.png" /> COMMUNES': layer_COMMUNES_BDX_IMMO_9, 'FRANCE_LIMITES_PAYS_REG_DEPT<br /><table><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Frontièreinternationale0.png" /></td><td>Frontière internationale</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitecôtière1.png" /></td><td>Limite côtière</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitededépartement2.png" /></td><td>Limite de département</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitederégion3.png" /></td><td>Limite de région</td></tr></table>': layer_FRANCE_LIMITES_PAYS_REG_DEPT_5, "Fond de plan carte ": layer_Fonddeplancarte_1, "Fond de plan satéllite": layer_Fonddeplansatllite_0, }).addTo(map);
+        L.control.layers(baseMaps, { 'BIEN_IMMO<br /><table><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_ALOUER0.png" /></td><td>A_LOUER</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_AVENDRE1.png" /></td><td>A_VENDRE</td></tr><tr><td style="text-align: center;"><img src="legend/BIEN_IMMO_PERI_3857_11_SOUSCOMPROMIS2.png" /></td><td>SOUS COMPROMIS</td></tr></table>': layer_BIEN_IMMO_PERI_3857_11, 'LIGNES_TRAM_BATCUB<br /><table><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_BatCub0.png" /></td><td>BatCub</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramA1.png" /></td><td>Tram A</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramB2.png" /></td><td>Tram B</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramC3.png" /></td><td>Tram C</td></tr><tr><td style="text-align: center;"><img src="legend/LIGNES_TRAM_BATCUB_10_TramD4.png" /></td><td>Tram D</td></tr></table>': layer_LIGNES_TRAM_BATCUB_10, '<br />Limite Admin France<table><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Frontièreinternationale0.png" /></td><td>Frontière internationale</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitecôtière1.png" /></td><td>Limite côtière</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitededépartement2.png" /></td><td>Limite de département</td></tr><tr><td style="text-align: center;"><img src="legend/FRANCE_LIMITES_PAYS_REG_DEPT_5_Limitederégion3.png" /></td><td>Limite de région</td></tr></table>': layer_FRANCE_LIMITES_PAYS_REG_DEPT_5, '<img src="legend/COMMUNES_BDX_IMMO_9.png" /> COMMUNES': layer_COMMUNES_BDX_IMMO_9, "Fond de plan carte ": layer_Fonddeplancarte_1, "Fond de plan satéllite": layer_Fonddeplansatllite_0, }).addTo(map);
         map.on("zoomend", function () {
 
             if (map.hasLayer(layer_gadm36_MAR_1_6)) {
