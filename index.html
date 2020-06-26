@@ -61,7 +61,7 @@
             zoomControl: true, maxZoom: 28, minZoom: 1
         }).fitBounds([[44.20437220967286, -1.3338568444162782], [45.36760730597491, 0.4249696240767354]]);
         var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank"></a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org"></a>');
+        map.attributionControl.setPrefix('<a href="https://www.cartogis.fr/" target="_blank">CARTOGIS</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org"></a>');
         var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
         L.control.locate({ locateOptions: { maxZoom: 19 } }).addTo(map);
         var measureControl = new L.Control.Measure({
@@ -97,7 +97,7 @@
         var layer_Fonddeplancarte_1 = L.tileLayer('http://tile-b.openstreetmap.fr/hot/{z}/{x}/{y}.png, http://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png, http://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             pane: 'pane_Fonddeplancarte_1',
             opacity: 1.0,
-            attribution: '<a href="https://www.openstreetmap.org/copyright"></a>',
+            attribution: '<a href="https://www.openstreetmap.org/copyright">osm</a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
