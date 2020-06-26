@@ -59,7 +59,7 @@
     <script>
         var map = L.map('map', {
             zoomControl: true, maxZoom: 28, minZoom: 1
-        }).fitBounds([[44.20437220967286, -1.3338568444162782], [45.36760730597491, 0.4249696240767354]]);
+        }).fitBounds([[44.37294072199936, -1.4628142868400715], [45.30270983818034, 0.15112290933004405]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://www.cartogis.fr/" target="_blank">CARTOGIS</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org"></a>');
         var autolinker = new Autolinker({ truncate: { length: 30, location: 'smart' } });
@@ -97,7 +97,7 @@
         var layer_Fonddeplancarte_1 = L.tileLayer('http://tile-b.openstreetmap.fr/hot/{z}/{x}/{y}.png, http://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png, http://tile-c.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             pane: 'pane_Fonddeplancarte_1',
             opacity: 1.0,
-            attribution: '<a href="https://www.openstreetmap.org/copyright">osm</a>',
+            attribution: '<a href="https://www.openstreetmap.org/copyright">OSM</a>',
             minZoom: 1,
             maxZoom: 28,
             minNativeZoom: 0,
@@ -176,6 +176,7 @@
             style: style_gadm36_NCL_2_2_0,
         });
         bounds_group.addLayer(layer_gadm36_NCL_2_2);
+        map.addLayer(layer_gadm36_NCL_2_2);
         function pop_gadm36_NCL_1_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -238,6 +239,7 @@
             style: style_gadm36_NCL_1_3_0,
         });
         bounds_group.addLayer(layer_gadm36_NCL_1_3);
+        map.addLayer(layer_gadm36_NCL_1_3);
         function pop_LIMITES_PORTUGAL_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -383,6 +385,7 @@
             style: style_LIMITES_PORTUGAL_4_0,
         });
         bounds_group.addLayer(layer_LIMITES_PORTUGAL_4);
+        map.addLayer(layer_LIMITES_PORTUGAL_4);
         function pop_FRANCE_LIMITES_PAYS_REG_DEPT_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -527,6 +530,7 @@
             style: style_gadm36_MAR_1_6_0,
         });
         bounds_group.addLayer(layer_gadm36_MAR_1_6);
+        map.addLayer(layer_gadm36_MAR_1_6);
         function pop_gadm36_MAR_2_7(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -598,6 +602,7 @@
             style: style_gadm36_MAR_2_7_0,
         });
         bounds_group.addLayer(layer_gadm36_MAR_2_7);
+        map.addLayer(layer_gadm36_MAR_2_7);
         function pop_COMMUNES_MAROCS_BDXIMMO_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -678,6 +683,7 @@
             style: style_COMMUNES_MAROCS_BDXIMMO_8_0,
         });
         bounds_group.addLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
+        map.addLayer(layer_COMMUNES_MAROCS_BDXIMMO_8);
         function pop_COMMUNES_BDX_IMMO_9(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -738,7 +744,7 @@
                         lineJoin: 'round',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: false,
+                        interactive: true,
                     }
                     break;
                 case 'Tram A':
@@ -751,7 +757,7 @@
                         lineJoin: 'bevel',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: false,
+                        interactive: true,
                     }
                     break;
                 case 'Tram B':
@@ -764,7 +770,7 @@
                         lineJoin: 'bevel',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: false,
+                        interactive: true,
                     }
                     break;
                 case 'Tram C':
@@ -777,7 +783,7 @@
                         lineJoin: 'bevel',
                         weight: 3.0,
                         fillOpacity: 0,
-                        interactive: false,
+                        interactive: true,
                     }
                     break;
                 case 'Tram D':
@@ -790,7 +796,7 @@
                         lineJoin: 'bevel',
                         weight: 4.0,
                         fillOpacity: 0,
-                        interactive: false,
+                        interactive: true,
                     }
                     break;
             }
@@ -800,7 +806,7 @@
         map.getPane('pane_LIGNES_TRAM_BATCUB_10').style['mix-blend-mode'] = 'normal';
         var layer_LIGNES_TRAM_BATCUB_10 = new L.geoJson(json_LIGNES_TRAM_BATCUB_10, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_LIGNES_TRAM_BATCUB_10',
             layerName: 'layer_LIGNES_TRAM_BATCUB_10',
             pane: 'pane_LIGNES_TRAM_BATCUB_10',
@@ -812,7 +818,6 @@
         function pop_BIEN_IMMO_PERI_3857_11(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
                     </tr>\
@@ -824,7 +829,7 @@
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Liens'] !== null ? autolinker.link(feature.properties['Liens'].toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    <tr>\
                 </table>';
             layer.bindPopup(popupContent, { maxHeight: 400 });
         }
@@ -899,7 +904,7 @@
                         <td colspan="2">' + (feature.properties['description'] !== null ? autolinker.link(feature.properties['description'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2"><strong>nom</strong><br />' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['photo'] !== null ? autolinker.link(feature.properties['photo'].toLocaleString()) : '') + '</td>\
@@ -952,6 +957,7 @@
         cluster_BIEN_IMMO_DEL_3857_12.addLayer(layer_BIEN_IMMO_DEL_3857_12);
 
         bounds_group.addLayer(layer_BIEN_IMMO_DEL_3857_12);
+        cluster_BIEN_IMMO_DEL_3857_12.addTo(map);
         function pop_BIENS_IMMO_13(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -1064,15 +1070,16 @@
         cluster_BIENS_IMMO_13.addLayer(layer_BIENS_IMMO_13);
 
         bounds_group.addLayer(layer_BIENS_IMMO_13);
+        cluster_BIENS_IMMO_13.addTo(map);
         map.on("zoomend", function (e) {
-            if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+            if (map.getZoom() <= 19 && map.getZoom() >= 15) {
                 map.addLayer(layer_Fonddeplansatllite_0);
-            } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+            } else if (map.getZoom() > 19 || map.getZoom() < 15) {
                 map.removeLayer(layer_Fonddeplansatllite_0);
             }
-            if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+            if (map.getZoom() <= 15 && map.getZoom() >= 2) {
                 map.addLayer(layer_Fonddeplancarte_1);
-            } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+            } else if (map.getZoom() > 15 || map.getZoom() < 2) {
                 map.removeLayer(layer_Fonddeplancarte_1);
             }
             if (map.getZoom() <= 19 && map.getZoom() >= 6) {
@@ -1136,14 +1143,14 @@
                 map.removeLayer(cluster_BIENS_IMMO_13);
             }
         });
-        if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+        if (map.getZoom() <= 19 && map.getZoom() >= 15) {
             map.addLayer(layer_Fonddeplansatllite_0);
-        } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+        } else if (map.getZoom() > 19 || map.getZoom() < 15) {
             map.removeLayer(layer_Fonddeplansatllite_0);
         }
-        if (map.getZoom() <= 19 && map.getZoom() >= 2) {
+        if (map.getZoom() <= 15 && map.getZoom() >= 2) {
             map.addLayer(layer_Fonddeplancarte_1);
-        } else if (map.getZoom() > 19 || map.getZoom() < 2) {
+        } else if (map.getZoom() > 15 || map.getZoom() < 2) {
             map.removeLayer(layer_Fonddeplancarte_1);
         }
         if (map.getZoom() <= 19 && map.getZoom() >= 6) {
